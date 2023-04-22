@@ -14,31 +14,17 @@
     <p> 50만원</p>
   </div> -->
 
-  <div>
-    <img src="./assets/room0.jpg" class="room-img">
-    <h4 @click="modalActivate = true">{{ products[0] }}</h4>
-    <p> 50만원</p>
-    <button @click="increaseFirst">허위매물신고</button> <span>신고 수: {{ first }}</span>
+  <div v-for="(item, idx) in onerooms" :key="idx">
+    <img :src="item.image" class="room-img">
+    <h4 @click="modalActivate = true">{{ item.title }}</h4>
+    <p> {{ item.price }} 원</p>
   </div>
 
-  <div>
-    <img src="./assets/room1.jpg" class="room-img">
-    <h4>{{ products[1] }}</h4>
-    <p> 60만원</p>
-    <button @click="increaseSecond">허위매물신고</button> <span>신고 수: {{ second }}</span>
-  </div>
-
-  <div>
-    <img src="./assets/room2.jpg" class="room-img">
-    <h4>{{ products[2] }}</h4>
-    <p> 70만원</p>
-    <button @click="increaseThird">허위매물신고</button> <span>신고 수: {{ third }}</span>
-  </div> 
 
 </template>
 
 <script>
-
+import data from './assets/onerooms.js';
 
 export default {
   name: 'App',
@@ -46,6 +32,7 @@ export default {
     return {
 
       modalActivate: false,
+      onerooms: data,
 
       first : 0,
       second: 0,
