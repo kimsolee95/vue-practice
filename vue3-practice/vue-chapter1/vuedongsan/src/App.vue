@@ -1,7 +1,7 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
 
-  <DiscountView/>
+  <DiscountView :discountRate="discountRate" v-if="showDiscount == true" />
 
   <!-- <div class="start" :class="{end : modalActivate}"> -->
   <transition name="fade">
@@ -13,6 +13,10 @@
     />
   </transition>
   <!-- </div> -->
+
+  <button @click="priceSort">가격순정렬</button>
+  <button @click="priceSortReverse">가격역순정렬</button>
+  <button @click="sortBack">되돌리기</button>
 
   <!-- <div v-for="(item, idx) in onerooms" :key="idx">
     <img :src="item.image" class="room-img">
@@ -39,7 +43,9 @@ export default {
   name: 'App',
   data() {
     return {
-
+      discountRate: 30,
+      showDiscount: true,
+      oneroomsOriginal: [...data],
       selectedOnerooms: 0,
       modalActivate: false,
       onerooms: data,
@@ -66,8 +72,31 @@ export default {
     },
     modalClose() {
       this.modalActivate = false;
+    },
+
+    priceSort() {
+      this.onerooms.sort(function(a, b) {
+        return a.price - b.price
+      })
+    },
+    sortBack() {
+      this.onerooms = [...this.oneroomsOriginal];
+    },
+    priceSortReverse() {
+      this.onerooms.sort(function(a, b) {
+        return b.price - a.price;
+      })
     }
 
+  },
+  mounted() {
+
+    // setTimeout(() => {
+    //   this.showDiscount = false;
+    // }, 2000);
+    setInterval(() => {
+      this.discountRate -= 1;
+    }, 1000);
   },
   components: {
     DiscountView : DiscountView,

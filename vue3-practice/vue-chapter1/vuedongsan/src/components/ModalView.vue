@@ -28,6 +28,11 @@ export default {
         }
       }
     },
+    beforeUpdate() {
+      if (this.month == 2) {
+        alert('2는 입력할 수 없습니다.');
+      }
+    },
     props: {
         onerooms : Array,
         selectedOnerooms: Number,
