@@ -1,36 +1,46 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
 
-  <div class="black-bg" v-if="modalActivate == true">
-    <div class="white-bg">
-      <h4>상세페이지</h4>
-      <p>상세페이지 내용</p>
-      <button @click="modalClose">닫기</button>
-    </div>
-  </div>
+  <DiscountView/>
 
-  <!-- <div v-for="(data, idx) in products" :key="idx">
-    <h4>{{ data }}</h4>
-    <p> 50만원</p>
+  <!-- <div class="start" :class="{end : modalActivate}"> -->
+  <transition name="fade">
+    <ModalView 
+      @closeModal="modalActivate = false"
+      :onerooms="onerooms" 
+      :selectedOnerooms="selectedOnerooms" 
+      :modalActivate="modalActivate"
+    />
+  </transition>
+  <!-- </div> -->
+
+  <!-- <div v-for="(item, idx) in onerooms" :key="idx">
+    <img :src="item.image" class="room-img">
+    <h4 @click="modalActivate = true; selectedOnerooms=idx">{{ item.title }}</h4>
+    <p> {{ item.price }} 원</p>
   </div> -->
 
-  <div v-for="(item, idx) in onerooms" :key="idx">
-    <img :src="item.image" class="room-img">
-    <h4 @click="modalActivate = true">{{ item.title }}</h4>
-    <p> {{ item.price }} 원</p>
-  </div>
-
+  <CardView v-for="(item, idx) in onerooms"
+    @openModal="modalActivate = true; selectedOnerooms = $event" 
+    :key="idx" 
+    :item="item" 
+    :modalActivate="modalActivate" 
+  />
 
 </template>
 
 <script>
 import data from './assets/onerooms.js';
+import DiscountView from './components/DiscountView.vue';
+import ModalView from './components/ModalView.vue';
+import CardView from './components/CardView.vue';
 
 export default {
   name: 'App',
   data() {
     return {
 
+      selectedOnerooms: 0,
       modalActivate: false,
       onerooms: data,
 
@@ -60,7 +70,9 @@ export default {
 
   },
   components: {
-
+    DiscountView : DiscountView,
+    ModalView : ModalView,
+    CardView : CardView,
   }
 }
 </script>
@@ -98,5 +110,34 @@ div {
   width: 100%; background: white;
   border-radius: 8px;
   padding: 20px;
+}
+
+.start {
+  opacity: 0;
+  transition: all 1s;
+}
+
+.end {
+  opacity: 1;
+}
+
+.fade-enter-from {
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: all 1s;
+}
+.fade-enter-to {
+  opacity : 1
+}
+
+.fade-leave-from {
+  opacity: 1;
+}
+.fade-leave-active {
+  transition: all 1s;
+}
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
