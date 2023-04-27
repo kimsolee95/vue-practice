@@ -3,6 +3,8 @@
         <router-link to="/detail" :item="item">
             <h5>{{ info.title }}</h5>
         </router-link>
+
+        <h5 @click="$router.push('/detail/0')">{{ info.title }}</h5>
         <p>{{ info.date }}</p>
         <p>{{ info.content }}</p>
     </div>

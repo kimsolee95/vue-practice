@@ -8,7 +8,10 @@
         <p>글 내용</p>
         <p>{{ item[$route.params.id].content }}</p>
     </div>
-    </div>    
+    </div>
+    
+    <router-view></router-view>
+    
 </template>
 
 <script>
