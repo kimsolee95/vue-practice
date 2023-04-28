@@ -11,6 +11,8 @@
 
   <ContainerView :data="data"/>
 
+  <button @click="addMore">더보기</button>
+
   <div class="footer">
     <ul class="footer-button-plus">
       <input type="file" id="file" class="inputfile" />
@@ -22,16 +24,44 @@
 <script>
 import ContainerView from './components/ContainerView.vue';
 import data from './assets/data.js';
+import axios from 'axios';
 
 export default {
   name: 'App',
   data() {
     return {
       data : data,
+      moreCnt : 0,
     }
   },
   components: {
     ContainerView : ContainerView
+  },
+  methods : {
+    more() {
+      axios.get('https://codingapple1.github.io/vue/more0.json')
+        .then((res) => {
+          console.log(res.data);
+          this.data.push(res.data);
+        }) 
+        .catch
+    },
+    addMore() {
+
+      if (this.moreCnt < 2) {
+        this.moreCnt += 1;
+      }
+      
+      let url = 'https://codingapple1.github.io/vue/more' + this.moreCnt + '.json';
+
+      axios.get(url)
+        .then((res) => {
+          this.data.push(res.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        })
+    }
   }
 }
 </script>

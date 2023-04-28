@@ -1,8 +1,6 @@
 <template>
     <div v-for="(item, idx) in data" :key="idx">
         <PostView :item="item"/>
-        <!-- <PostView/>
-        <PostView/> -->
     </div>    
 </template>
 
