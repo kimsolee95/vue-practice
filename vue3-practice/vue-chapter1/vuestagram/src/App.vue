@@ -9,16 +9,21 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <ContainerView :data="data"/>
+  <ContainerView :data="data" :step="step" :uploadUrl="uploadUrl"/>
 
   <button @click="addMore">더보기</button>
 
   <div class="footer">
     <ul class="footer-button-plus">
-      <input type="file" id="file" class="inputfile" />
+      <input @change="upload" accept="image/*" type="file" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
     </ul>
  </div>
+
+ <button @click="step = 0">버튼0</button>
+ <button @click="step = 1">버튼1</button>
+ <button @click="step = 2">버튼2</button>
+
 </template>
 
 <script>
@@ -30,14 +35,17 @@ export default {
   name: 'App',
   data() {
     return {
+      step : 0,
       data : data,
       moreCnt : 0,
+      uploadUrl : ""
     }
   },
   components: {
     ContainerView : ContainerView
   },
   methods : {
+
     more() {
       axios.get('https://codingapple1.github.io/vue/more0.json')
         .then((res) => {
@@ -46,14 +54,12 @@ export default {
         }) 
         .catch
     },
-    addMore() {
 
+    addMore() {
       if (this.moreCnt < 2) {
         this.moreCnt += 1;
       }
-      
       let url = 'https://codingapple1.github.io/vue/more' + this.moreCnt + '.json';
-
       axios.get(url)
         .then((res) => {
           this.data.push(res.data);
@@ -61,6 +67,19 @@ export default {
         .catch((e) => {
           console.log(e);
         })
+    },
+
+    upload(e) {
+
+      let file = e.target.files;
+      console.log(file);
+      console.log(file[0].type);
+
+      let uploadUrl = URL.createObjectURL(file[0]);
+      console.log(uploadUrl);
+      this.uploadUrl = uploadUrl;
+      
+      this.step++;
     }
   }
 }
