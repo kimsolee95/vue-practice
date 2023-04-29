@@ -1,15 +1,22 @@
 <template>
   <div class="header">
     <ul class="header-button-left">
-      <li>Cancel</li>
+      <li @click="cancelMove">Cancel</li>
     </ul>
-    <ul class="header-button-right">
-      <li>Next</li>
+    <ul @click="nextPageMove" class="header-button-right">
+      <li v-if="step == 1 || step == 0">Next</li>
+      <li v-if="step == 2" @click="publishPost">Publish</li>
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <ContainerView :data="data" :step="step" :uploadUrl="uploadUrl"/>
+  <ContainerView 
+  :data="data" 
+  :step="step" 
+  :uploadUrl="uploadUrl"
+  :myContent="myContent"
+  @publishPost="publishPost"
+  />
 
   <button @click="addMore">더보기</button>
 
@@ -19,10 +26,6 @@
       <label for="file" class="input-plus">+</label>
     </ul>
  </div>
-
- <button @click="step = 0">버튼0</button>
- <button @click="step = 1">버튼1</button>
- <button @click="step = 2">버튼2</button>
 
 </template>
 
@@ -38,7 +41,8 @@ export default {
       step : 0,
       data : data,
       moreCnt : 0,
-      uploadUrl : ""
+      uploadUrl : "",
+      myContent : "",
     }
   },
   components: {
@@ -80,7 +84,33 @@ export default {
       this.uploadUrl = uploadUrl;
       
       this.step++;
-    }
+    },
+
+    nextPageMove() {
+      if (this.step < 2) this.step++;
+    },
+
+    cancelMove() {
+      this.step = 0;
+    },
+
+    publishPost() {
+
+      var myPost = {
+        name: "kimsolee",
+        userImage: "",
+        postImage: this.uploadUrl,
+        likes: 0,
+        date: "",
+        liked: false,
+        content: this.myContent,
+        filter: ""        
+      };
+      
+      this.data.unshift(myPost);
+      this.step = 0;
+    },
+
   }
 }
 </script>

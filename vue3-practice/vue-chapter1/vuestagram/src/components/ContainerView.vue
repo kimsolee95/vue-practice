@@ -18,7 +18,11 @@
     <div v-if="step == 2">
     <div class="upload-image" :style="{ backgroundImage : `url(${uploadUrl})` }"></div>
       <div class="write">
-        <textarea class="write-box">write!</textarea>
+        <textarea 
+        :myContent="myContent" 
+        class="write-box">write!
+        </textarea>
+        <button @click="writePost">글발행임시</button>
       </div>
     </div>        
 
@@ -36,7 +40,13 @@ export default {
     props: {
         data : Array,
         step : Number,
-        uploadUrl : Text,
+        uploadUrl : Blob,
+        myContent : Text,
+    },
+    methods: {
+        writePost() {
+            this.$emit("publishPost", this.myContent);
+        }
     }
 
 }
