@@ -2,6 +2,8 @@
     <div 
     :class="[item, `filter-item`]"
     :style="{backgroundImage  : `url(${uploadUrl})`}">
+      <slot name="filtername"></slot> <!-- 전송된 slot 이 보일 곳 -->
+      <button @click="fire">필터버튼</button>
     </div> 
 </template>
 
@@ -12,6 +14,17 @@ export default {
     props : {
       uploadUrl : String,
       item : String,
+    },
+    data() {
+      return {
+        msg : 'filter filter',
+        // item: '',
+      }
+    },
+    methods : {
+      fire() {
+        this.emitter.emit('filterBtnClick', this.item);
+      }
     }
 
 }

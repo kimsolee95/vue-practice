@@ -13,15 +13,19 @@
             <FilterBox v-for="filter in filterData" 
             :uploadUrl="uploadUrl"
             :item="filter"
-            :key="filter" 
-            >
+            :key="filter">
+                <template v-slot:filtername> <!-- slot으로 전송 (html을 통째로 보이게 할 때는 이게 더 편할 수 있음) -->
+                    <span>{{ filter }}</span>
+                </template>
             </FilterBox>        
         </div>
     </div>
 
     <!-- 글작성페이지 -->
     <div v-if="step == 2">
-    <div class="upload-image" :style="{ backgroundImage : `url(${uploadUrl})` }"></div>
+    <div 
+    :class="[choosedFilter ,`upload-image`]" 
+    :style="{ backgroundImage : `url(${uploadUrl})` }"></div>
       <div class="write">
         <textarea 
         :myContent="myContent" 
@@ -46,8 +50,9 @@ export default {
     props: {
         data : Array,
         step : Number,
-        uploadUrl : Blob,
-        myContent : Text,
+        uploadUrl : String,
+        myContent : String,
+        choosedFilter : String,
     },
     data() {
         return {
@@ -56,9 +61,15 @@ export default {
     },
     methods: {
         writePost() {
-            this.$emit("publishPost", this.myContent);
+
+            let fileterAndContent = {
+                myContent : this.myContent,
+                filter : this.choosedFilter
+            }
+
+            this.$emit("publishPost", fileterAndContent);
         }
-    }
+    }, 
 
 }
 </script>

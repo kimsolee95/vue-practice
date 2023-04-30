@@ -15,6 +15,7 @@
   :step="step" 
   :uploadUrl="uploadUrl"
   :myContent="myContent"
+  :choosedFilter="choosedFilter"
   @publishPost="publishPost"
   />
 
@@ -35,6 +36,7 @@ import data from './assets/data.js';
 import axios from 'axios';
 
 export default {
+
   name: 'App',
   data() {
     return {
@@ -43,6 +45,7 @@ export default {
       moreCnt : 0,
       uploadUrl : "",
       myContent : "",
+      choosedFilter : "",
     }
   },
   components: {
@@ -94,7 +97,9 @@ export default {
       this.step = 0;
     },
 
-    publishPost() {
+    publishPost(e) {
+
+      alert(e);
 
       var myPost = {
         name: "kimsolee",
@@ -103,15 +108,20 @@ export default {
         likes: 0,
         date: "",
         liked: false,
-        content: this.myContent,
-        filter: ""        
+        content: e.myContent,
+        filter: e.filter       
       };
       
       this.data.unshift(myPost);
       this.step = 0;
     },
-
-  }
+  },
+  beforeUpdate() {
+        this.emitter.on('filterBtnClick', (e) => {
+        alert(e);
+        this.choosedFilter = e;
+        });
+  },
 }
 </script>
 

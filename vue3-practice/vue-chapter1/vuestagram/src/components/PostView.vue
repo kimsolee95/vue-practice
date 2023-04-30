@@ -4,7 +4,10 @@
         <div class="profile"></div>
         <span class="profile-name">{{ item.name }}</span>
         </div>
-        <div class="post-body" :style="{ backgroundImage : `url(${item.postImage})` }"></div>
+        <div 
+        :class="[ item.filter , `post-body`]" 
+        :style="{ backgroundImage : `url(${item.postImage})` }">
+        </div>
         <div class="post-content">
         <p>{{ item.likes }} Likes</p>
         <p><strong>{{ item.name }}</strong> {{ item.content }}</p>
@@ -17,8 +20,8 @@
 export default {
 
   props: {
-    item : Object
-  }
+    item : Object,
+  },
 
 }
 </script>
