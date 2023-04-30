@@ -1,16 +1,21 @@
 <template>
-    <div v-for="(item, idx) in data" :key="idx">
-        <PostView v-if="step == 0" :item="item"/>
+
+    <div v-if="step == 0">
+        <PostView v-for="(item, idx) in data" 
+        :key="idx" 
+        :item="item"/>
     </div>        
+
     <!-- 필터선택페이지 -->
     <div v-if="step == 1">
     <div class="upload-image" :style="{ backgroundImage : `url(${uploadUrl})` }"></div>
         <div class="filters">
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
+            <FilterBox v-for="filter in filterData" 
+            :uploadUrl="uploadUrl"
+            :item="filter"
+            :key="filter" 
+            >
+            </FilterBox>        
         </div>
     </div>
 
@@ -24,24 +29,30 @@
         </textarea>
         <button @click="writePost">글발행임시</button>
       </div>
-    </div>        
-
-    
+    </div>
 </template>
 
 <script>
-import PostView from '../components/PostView.vue'
+import PostView from '../components/PostView.vue';
+import FilterBox from '../components/FilterBox.vue';
+import filterData from '../assets/filterData.js';
 
 export default {
 
     components: {
-        PostView : PostView
+        PostView : PostView,
+        FilterBox : FilterBox,
     },
     props: {
         data : Array,
         step : Number,
         uploadUrl : Blob,
         myContent : Text,
+    },
+    data() {
+        return {
+            filterData : filterData,
+        }
     },
     methods: {
         writePost() {
