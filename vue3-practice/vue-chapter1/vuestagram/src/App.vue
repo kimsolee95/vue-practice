@@ -13,9 +13,10 @@
   <ContainerView :data="data" :step="step" :uploadUrl="uploadUrl" :myContent="myContent" :choosedFilter="choosedFilter"
     @write="myContent = $event" />
 
-  <button @click="addMore">더보기</button>
-  <p>나이 : {{ $store.state.age }}</p>
-  <button @click="$store.commit('ageChange')">나이 change</button>
+  <!-- <button @click="addMore">더보기</button> -->
+  <p>더보기 데이터 : {{ more }} </p> <!--{{ $store.state.more }}-->
+  <button @click="getData">더보기</button>
+  <!--@click="$store.dispatch('getData')"-->
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -29,6 +30,7 @@
 import ContainerView from './components/ContainerView.vue';
 import data from './assets/data.js';
 import axios from 'axios';
+import {mapState,  mapMutations, mapActions} from 'vuex';
 
 export default {
 
@@ -46,15 +48,19 @@ export default {
   components: {
     ContainerView: ContainerView
   },
+  computed: {
+    ...mapState(['name', 'age', 'likes', 'more']),
+  },
   methods: {
 
+    ...mapMutations(['setMore']),
+    ...mapActions(['getData']),
     more() {
       axios.get('https://codingapple1.github.io/vue/more0.json')
         .then((res) => {
           console.log(res.data);
           this.data.push(res.data);
         })
-        .catch
     },
 
     addMore() {
