@@ -1,19 +1,20 @@
 <template>
-    <div class="post">
-        <div class="post-header">
-        <div class="profile"></div>
-        <span class="profile-name">{{ item.name }}</span>
-        </div>
-        <div 
-        :class="[ item.filter , `post-body`]" 
-        :style="{ backgroundImage : `url(${item.postImage})` }">
-        </div>
-        <div class="post-content">
-        <p>{{ item.likes }} Likes</p>
-        <p><strong>{{ item.name }}</strong> {{ item.content }}</p>
-        <p class="date">{{ item.date }}</p>
-        </div>
-    </div>    
+  <div class="post">
+    <div class="post-header">
+      <div class="profile"></div>
+      <span class="profile-name">{{ item.name }}</span>
+    </div>
+    <div 
+    :class="[item.filter, `post-body`]" 
+    :style="{ backgroundImage: `url(${item.postImage})` }"
+    @click="likeCange"> <!--$store.commit('likesChange')-->
+    </div>
+    <div class="post-content">
+      <p>{{ $store.state.likes[idx] }} Likes</p>
+      <p><strong>{{ item.name }}</strong> {{ item.content }}</p>
+      <p class="date">{{ item.date }}</p>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -21,7 +22,24 @@ export default {
 
   props: {
     item : Object,
+    idx : Number,
   },
+  data() {
+    return {
+      isLikes : false,
+    }
+  },
+  methods: {
+    likeCange() {
+
+      this.isLikes = !this.isLikes;
+      let payload = {
+        isLikes : this.isLikes,
+        idx : this.idx
+      }
+      this.$store.commit('likesChange', payload);
+    },
+  }
 
 }
 </script>

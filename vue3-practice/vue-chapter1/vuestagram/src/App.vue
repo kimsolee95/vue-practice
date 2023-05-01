@@ -10,24 +10,19 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <ContainerView 
-  :data="data" 
-  :step="step" 
-  :uploadUrl="uploadUrl"
-  :myContent="myContent"
-  :choosedFilter="choosedFilter"
-  @publishPost="publishPost"
-  />
+  <ContainerView :data="data" :step="step" :uploadUrl="uploadUrl" :myContent="myContent" :choosedFilter="choosedFilter"
+    @write="myContent = $event" />
 
   <button @click="addMore">더보기</button>
+  <p>나이 : {{ $store.state.age }}</p>
+  <button @click="$store.commit('ageChange')">나이 change</button>
 
   <div class="footer">
     <ul class="footer-button-plus">
       <input @change="upload" accept="image/*" type="file" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
     </ul>
- </div>
-
+  </div>
 </template>
 
 <script>
@@ -40,25 +35,25 @@ export default {
   name: 'App',
   data() {
     return {
-      step : 0,
-      data : data,
-      moreCnt : 0,
-      uploadUrl : "",
-      myContent : "",
-      choosedFilter : "",
+      step: 0,
+      data: data,
+      moreCnt: 0,
+      uploadUrl: "",
+      myContent: "",
+      choosedFilter: "",
     }
   },
   components: {
-    ContainerView : ContainerView
+    ContainerView: ContainerView
   },
-  methods : {
+  methods: {
 
     more() {
       axios.get('https://codingapple1.github.io/vue/more0.json')
         .then((res) => {
           console.log(res.data);
           this.data.push(res.data);
-        }) 
+        })
         .catch
     },
 
@@ -85,21 +80,20 @@ export default {
       let uploadUrl = URL.createObjectURL(file[0]);
       console.log(uploadUrl);
       this.uploadUrl = uploadUrl;
-      
+
       this.step++;
     },
 
     nextPageMove() {
       if (this.step < 2) this.step++;
+      if (this.step == 2) this.step = 0;
     },
 
     cancelMove() {
       this.step = 0;
     },
 
-    publishPost(e) {
-
-      alert(e);
+    publishPost() {
 
       var myPost = {
         name: "kimsolee",
@@ -108,19 +102,18 @@ export default {
         likes: 0,
         date: "",
         liked: false,
-        content: e.myContent,
-        filter: e.filter       
+        content: this.myContent,
+        filter: this.choosedFilter,
       };
-      
+
       this.data.unshift(myPost);
       this.step = 0;
     },
   },
-  beforeUpdate() {
-        this.emitter.on('filterBtnClick', (e) => {
-        alert(e);
-        this.choosedFilter = e;
-        });
+  mounted() {
+    this.emitter.on('filterBtnClick', (e) => {
+      this.choosedFilter = e;
+    });
   },
 }
 </script>

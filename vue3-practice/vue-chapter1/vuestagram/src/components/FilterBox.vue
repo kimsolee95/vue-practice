@@ -1,10 +1,7 @@
 <template>
-    <div 
-    :class="[item, `filter-item`]"
-    :style="{backgroundImage  : `url(${uploadUrl})`}">
-      <slot name="filtername"></slot> <!-- 전송된 slot 이 보일 곳 -->
-      <button @click="fire">필터버튼</button>
-    </div> 
+  <div @click="fire" :class="[item, `filter-item`]" :style="{ backgroundImage: `url(${uploadUrl})` }">
+    <slot name="filtername"></slot> <!-- 전송된 slot 이 보일 곳 -->
+  </div>
 </template>
 
 <script>

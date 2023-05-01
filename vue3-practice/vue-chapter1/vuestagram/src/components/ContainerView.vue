@@ -1,38 +1,31 @@
 <template>
+    <div>
 
-    <div v-if="step == 0">
-        <PostView v-for="(item, idx) in data" 
-        :key="idx" 
-        :item="item"/>
-    </div>        
-
-    <!-- 필터선택페이지 -->
-    <div v-if="step == 1">
-    <div class="upload-image" :style="{ backgroundImage : `url(${uploadUrl})` }"></div>
-        <div class="filters">
-            <FilterBox v-for="filter in filterData" 
-            :uploadUrl="uploadUrl"
-            :item="filter"
-            :key="filter">
-                <template v-slot:filtername> <!-- slot으로 전송 (html을 통째로 보이게 할 때는 이게 더 편할 수 있음) -->
-                    <span>{{ filter }}</span>
-                </template>
-            </FilterBox>        
+        <div v-if="step == 0">
+            <PostView v-for="(item, idx) in data" :key="idx" :item="item" :idx="idx"/>
         </div>
-    </div>
 
-    <!-- 글작성페이지 -->
-    <div v-if="step == 2">
-    <div 
-    :class="[choosedFilter ,`upload-image`]" 
-    :style="{ backgroundImage : `url(${uploadUrl})` }"></div>
-      <div class="write">
-        <textarea 
-        :myContent="myContent" 
-        class="write-box">write!
+        <!-- 필터선택페이지 -->
+        <div v-if="step == 1">
+            <div :class="[choosedFilter, `upload-image`]" :style="{ backgroundImage: `url(${uploadUrl})` }"></div>
+            <div class="filters">
+                <FilterBox v-for="filter in filterData" :uploadUrl="uploadUrl" :item="filter" :key="filter">
+                    <template v-slot:filtername> <!-- slot으로 전송 (html을 통째로 보이게 할 때는 이게 더 편할 수 있음) -->
+                        <span>{{ filter }}</span>
+                    </template>
+                </FilterBox>
+            </div>
+        </div>
+
+        <!-- 글작성페이지 -->
+        <div v-if="step == 2">
+            <div :class="[choosedFilter, `upload-image`]" :style="{ backgroundImage: `url(${uploadUrl})` }"></div>
+            <div class="write">
+                <textarea :myContent="myContent" @input="$emit('write', $event.target.value)" class="write-box">write!
         </textarea>
-        <button @click="writePost">글발행임시</button>
-      </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
