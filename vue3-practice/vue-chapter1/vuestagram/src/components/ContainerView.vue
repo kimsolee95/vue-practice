@@ -26,19 +26,26 @@
             </div>
         </div>
 
+        <!-- composition api -->
+        <div v-if="step == 3">
+            <MyPageView :one="1" :two="2"/>
+        </div>
+
     </div>
 </template>
 
 <script>
-import PostView from '../components/PostView.vue';
-import FilterBox from '../components/FilterBox.vue';
-import filterData from '../assets/filterData.js';
+import PostView from './PostView.vue';
+import FilterBox from './FilterBox.vue';
+import MyPageView from './MyPageView.vue';
+import filterData from '@/assets/filterData.js';
 
 export default {
 
     components: {
         PostView : PostView,
         FilterBox : FilterBox,
+        MyPageView : MyPageView,
     },
     props: {
         data : Array,
