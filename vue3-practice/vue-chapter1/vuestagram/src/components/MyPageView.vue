@@ -1,8 +1,8 @@
 <template>
     <div style="padding : 10px">
     <h4>팔로워</h4>
-    <input @input="searchName($event.target.value)" :searchWord="searchWord" placeholder="search" />
-    <div v-for="(item, id) in follower" :key="id" class="post-header">
+    <input @input="searchName($event.target.value)" v-model="searchWord" placeholder="search" />
+    <div v-for="(item, id) in state.follower" :key="id" class="post-header">
         <div class="profile" :style="`background-image:url(${item.image})`"></div>
         <span class="profile-name">{{ item.name }}</span>
     </div>
@@ -23,8 +23,13 @@ export default {
     },
     setup(props) { //created hook 
         
-        let follower = ref([]);
-        let followerOrigin = reactive({ name : 'kim' });
+        const state = reactive({
+            follower: [],
+            followerOrigin: [],
+        });
+
+        // let follower = ref([]);
+        // let followerOrigin = reactive({}); 
         let searchWord = ref(['']);
 
         let {one, two} = toRefs(props);
@@ -40,29 +45,33 @@ export default {
 
         onMounted(() => {
             axios.get('/follower.json').then((res) => {
-                follower.value = res.data;
+                // follower.value = res.data;
+                // followerOrigin.value = res.data;
+                state.follower = res.data;
+                state.followerOrigin = res.data;
             });
 
-            axios.get('/follower.json').then((res) => {
-                followerOrigin.value = res.data;
-            });
         });
 
         function searchName(e) {
 
-            if (e.length != 0) {
-                console.log(JSON.stringify(e));
+            if (searchWord.value !== null) {
+                console.log("e 확인 -->",  e);
+                console.log("searchWord.value 확인-->", searchWord.value);
 
-                let resultFollower = follower.value.filter((item) => {
+                let resultFollower = state.follower.filter((item) => {
                     return item.name.indexOf(e) != -1
                 });
-                follower.value = [...resultFollower];
-            } else {
-                follower.value = followerOrigin;
+                state.follower = [...resultFollower];
             }
+            
+            if (searchWord.value === '') {
+                state.follower = state.followerOrigin;
+            }
+            
         }
 
-        return {follower, followerOrigin, searchName, searchWord};
+        return {state, searchName, searchWord}; //follower, followerOrigin,
 
     },
 

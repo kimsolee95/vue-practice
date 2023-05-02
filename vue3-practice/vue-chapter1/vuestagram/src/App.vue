@@ -37,7 +37,7 @@ export default {
   name: 'App',
   data() {
     return {
-      step: 0,
+      step: 3,
       data: data,
       moreCnt: 0,
       uploadUrl: "",
