@@ -1,0 +1,40 @@
+<div></div>
+
+<button id="eventBtn1">이벤트버튼</button>
+
+<script>
+
+  var btnFn1 = (a) => { return a + 10 };
+  btnFn1(5);
+
+  [1, 2, 3, 4].forEach(function(a) {
+    console.log(a);
+  });
+
+  //parameter가 1개이면 () 생략가능
+  //함수 내 1줄이라면.. {} 생략가능
+  [1, 2, 3, 4].forEach( (a) => { console.log(a) } );
+  [1, 2, 3, 4].forEach( a => console.log(a) ); 
+
+  //그냥 function
+  //여기서의 this는 e.currentTarget이다.
+  // document.getElementById('eventBtn1').addEventListener('click',
+  //   function(e) {
+  // });
+
+  //arrow function
+  //여기서의 this는 e.currentTarget이 아니라 window가 된다.
+  document.getElementById('eventBtn1').addEventListener('click',
+  (e) => {
+    console.log(this);
+  });
+
+  //object 예시
+  var obj = {
+    objFn: () => {
+      console.log(this); //바깥의 this가 된다. window라는 뜻임.
+    }
+  }
+  obj.objFn();
+
+</script>

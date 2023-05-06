@@ -1,0 +1,39 @@
+<div></div>
+  <button id="setTimeOutBtn">1초후에 콘솔창 출력해보기</button>
+
+
+<script>
+
+  //1. 간단 메서드 만들어보기
+  var person = {
+    name : '손흥민',
+    sayHi: () => {
+      console.log('안녕 나는 ' + this.person.name);
+    } 
+  };
+  person.sayHi();
+
+  //2. object 내 데이터 전부 더하는 메서드 만들어보기
+  var objData = {
+    data : [1, 2, 3, 4, 5],
+    sumData: () => {
+      let sum = 0;
+      this.objData.data.forEach((a) => {
+        sum += a;
+      });
+      console.log(sum);
+    }
+  };
+  objData.sumData();
+
+  //3. setTimeout 이용해보기
+  document.getElementById('setTimeOutBtn').addEventListener('click', (e) => {
+    
+    console.log(e.currentTarget.innerHTML);
+    let htmlValue = e.currentTarget.innerHTML;
+    setTimeout(() => {
+      console.log(htmlValue);
+    }, 1000);
+  });
+
+</script>
