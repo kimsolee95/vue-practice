@@ -1,0 +1,69 @@
+<div></div>
+
+  <button id="eventBtn1">이벤트버튼1</button>
+  <button id="eventBtn2">이벤트버튼2</button>
+
+
+<script>
+  
+  // this란
+
+  //1.
+  ////window라는 object
+  console.log(this); 
+
+  function loggingFn() {
+    console.log(this);
+  }
+
+  //2. object 내 함수 안에서 사용하면, 그 함수를 가지고 있는 object
+  //(arrow function이 아니라면 중첩되면 최상위 요소가 아니라, 포함하고 있는 object임)
+  //arrow function이라면 window임.
+  var thisObj = {
+    data: 'kim',
+    thisIsMethod : function() {
+      console.log('this is methods. I learn this keyword');
+      console.log(this);
+    }
+  };
+  thisObj.thisIsMethod();
+
+  //3. constructor
+  var blah = {};
+  function machineFn() {
+    this.name = 'kim'
+  };
+  var newObj = new machineFn();
+
+  //4. eventListener 안에서 this를 쓰게 되면
+  //e.currentTarget 임.
+  document.getElementById("eventBtn1").addEventListener('click', 
+  function (e) {
+    console.log(this); //click event가 동작하는 html 요소
+    console.log(e.currentTarget);
+    this;
+  });
+
+  //일반 함수 안에서는 this는 window임.
+  document.getElementById("eventBtn2").addEventListener('click',
+  function (e) {
+    var newArr = [1, 2, 3];
+    newArr.forEach(function(a) {
+      console.log(this); //일반 함수 안에서 쓴 것이므로 this는 여기서 window임.
+    });
+  });
+
+  //forEach
+  var objEx = {
+    names: ['김','이','빅'],
+    objExFn: function() {
+
+      console.log(this); //여기서는 이 objExFn 함수의 주인인 objEx가 this가 된다.
+
+      objEx.names.forEach(function() {
+        console.log(this); //여기서 this는 window -> 일반함수 내에서 쓰였기 때문
+      });
+    }
+  }
+
+</script>
