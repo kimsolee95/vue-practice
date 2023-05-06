@@ -1,0 +1,62 @@
+<div id="modal-0" class="modal" style="display : none">모달창0</div>
+<div id="modal-1" class="modal" style="display : none">모달창1</div>
+<div id="modal-2" class="modal" style="display : none">모달창2</div>
+
+<button id="btn-0" class="btn">버튼0</button>
+<button id="btn-1" class="btn">버튼1</button>
+<button id="btn-2" class="btn">버튼2</button>
+
+<script>
+  //1.
+  // fnHello();
+  // function fnHello() {
+  //   console.log(hello);
+  //   let hello = 'Hello';
+  // }
+
+  //2,
+  // fn2();
+  // var fn2 = function() {
+  //   console.log(hello);
+  //   var hello = 'Hello';
+  // }
+
+  //3.
+  // let a = 1;
+  // var fn3 = function() {
+  //   a = 2;
+  // }
+  // console.log(a);
+
+  //4.
+  // let a = 1;
+  // var b = 2;
+  // window.a = 3;
+  // window.b = 4;
+  // console.log(a + b);
+
+  //5.
+  // for (let i=1; i<6; i++) {
+  //   setTimeout(function() { console.log(i); }, 1000);
+  // }
+
+  //6.
+  // document.getElementById('btn-0').addEventListener('click', function() {
+  //   document.getElementById('modal-0').style.display = '';
+  // });
+  // document.getElementById('btn-1').addEventListener('click', function() {
+  //   document.getElementById('modal-1').style.display = '';
+  // });
+  // document.getElementById('btn-2').addEventListener('click', function() {
+  //   document.getElementById('modal-2').style.display = '';
+  // });
+  var btns = document.querySelectorAll('button');
+  var modals = document.querySelectorAll('div');
+  
+  for (let i=0; i<3; i++) {
+    btns[i].addEventListener('click', function() {
+      modals[i].style.display = 'block';
+    });
+  } 
+
+</script>
