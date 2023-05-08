@@ -31,19 +31,16 @@ export default {
   },
   methods: {
     likeCange() {
-
       this.isLikes = !this.isLikes;
       let payload = {
-        isLikes : this.isLikes,
-        idx : this.idx
+        isLikes: this.isLikes,
+        idx: this.idx
       }
       this.$store.commit('likesChange', payload);
     },
   }
-
 }
 </script>
-
 <style>
 .post {
   width: 100%;

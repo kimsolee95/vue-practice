@@ -3,15 +3,21 @@
     <ul class="header-button-left">
       <li @click="cancelMove">Cancel</li>
     </ul>
-    <ul @click="nextPageMove" class="header-button-right">
-      <li v-if="step == 1 || step == 0">Next</li>
-      <li v-if="step == 2" @click="publishPost">Publish</li>
+    <ul class="header-button-right"> <!-- @click="nextPageMove" -->
+      <li v-if="step == 1 || step == 0" @click="step++">Next</li>
+      <li v-else-if="step == 2" @click="publishPost">Publish</li>
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <ContainerView :data="data" :step="step" :uploadUrl="uploadUrl" :myContent="myContent" :choosedFilter="choosedFilter"
-    @write="myContent = $event" />
+  <ContainerView 
+    :data="data" 
+    :step="step" 
+    :uploadUrl="uploadUrl" 
+    :myContent="myContent" 
+    :choosedFilter="choosedFilter"
+    @write="myContent = $event" 
+  />
 
   <!-- <button @click="addMore">더보기</button> -->
   <p>더보기 데이터 : {{ more }} </p> <!--{{ $store.state.more }}-->
@@ -37,7 +43,7 @@ export default {
   name: 'App',
   data() {
     return {
-      step: 3,
+      step: 0,
       data: data,
       moreCnt: 0,
       uploadUrl: "",
@@ -101,7 +107,7 @@ export default {
 
     publishPost() {
 
-      var myPost = {
+      let myPost = {
         name: "kimsolee",
         userImage: "",
         postImage: this.uploadUrl,
@@ -114,7 +120,15 @@ export default {
 
       this.data.unshift(myPost);
       this.step = 0;
+      this.initPostWrite();
     },
+
+    initPostWrite() {
+      this.uploadUrl = "";
+      this.myContent = "";
+      this.choosedFilter = "";
+    }
+
   },
   mounted() {
     this.emitter.on('filterBtnClick', (e) => {
