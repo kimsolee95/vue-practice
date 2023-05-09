@@ -133,6 +133,7 @@ export default {
   mounted() {
     this.emitter.on('filterBtnClick', (e) => {
       this.choosedFilter = e;
+      alert('filterBtnClick!!');
     });
   },
 }
