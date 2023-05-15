@@ -11,7 +11,9 @@
 
   <ContainerView 
   :postdata="postdata"
+  :step="step"
   />
+  <button @click="more">더보기</button>
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -22,6 +24,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import ContainerView from './components/ContainerView.vue';
 import postdata from '@/assets/postdata.js';
 
@@ -29,11 +32,26 @@ export default {
   name: "App",
   data() {
     return {
-      postdata : postdata
+      postdata: postdata,
+      addCnt: 0,
+      step: 0
     }
   },
   components: {
     ContainerView: ContainerView
+  },
+  methods: {
+    more() {
+
+      if (this.addCnt >= 2) return; 
+
+      let url = `https://codingapple1.github.io/vue/more${this.addCnt}.json`;
+      axios.get(url)
+      .then((res) => {
+        this.postdata.push(res.data);
+        this.addCnt++;
+      })
+    },
   },
 };
 </script>
