@@ -12,6 +12,7 @@
 
   <ContainerView 
   :postdata="postdata"
+  :filtername="filtername"
   :step="step"
   :uploadImage="uploadImage"
   @writeSomething="writeSomething"
@@ -30,12 +31,14 @@
 import axios from 'axios';
 import ContainerView from './components/ContainerView.vue';
 import postdata from '@/assets/postdata.js';
+import filtername from '@/assets/filtername.js';
 
 export default {
   name: "App",
   data() {
     return {
       postdata: postdata,
+      filtername: filtername,
       addCnt: 0,
       step: 0,
       uploadImage: "",
@@ -65,7 +68,6 @@ export default {
       this.step++;
     },
     publish() {
-
       let publishedData = {
         name: "Kim solee",
         userImage: "https://placeimg.com/100/100/arch",
@@ -76,11 +78,9 @@ export default {
         content: this.uploadText,
         filter: "perpetua"
       };
-
       postdata.unshift(publishedData);
       this.step = 0;
     },
-
     writeSomething(e) {
       console.log(e);
       this.uploadText = e.target.value;

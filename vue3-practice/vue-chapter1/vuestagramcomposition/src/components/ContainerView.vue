@@ -7,19 +7,28 @@
     </div>
     <!-- 필터선택페이지 -->
     <div v-if="step == 1">
-      <div class="upload-image" :style="{ backgroundImage : `url(${uploadImage})` }"></div>
+      <div class="upload-image" 
+      :style="{ backgroundImage : `url(${uploadImage})` }">
+      </div>
       <div class="filters">
+        <FilterBox v-for="item in filtername" 
+        :key="item"
+        :filter="item"
+        :uploadImage="uploadImage"
+        />
+        <!-- <div class="filter-1"></div>
         <div class="filter-1"></div>
         <div class="filter-1"></div>
         <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
+        <div class="filter-1"></div> -->
       </div>
     </div>
 
     <!-- 글작성페이지 -->
     <div v-if="step == 2">
-      <div class="upload-image"></div>
+      <div class="upload-image" 
+      :style="{ backgroundImage : `url(${uploadImage})` }">
+      </div>
       <div class="write">
         <textarea @input="$emit('writeSomething', $event)" class="write-box">write!</textarea>
       </div>
@@ -28,13 +37,19 @@
 </template>
 <script>
 import PostView from "./PostView.vue";
+import FilterBox from "./FilterBox.vue";
 
 export default {
   components: {
     PostView: PostView,
+    FilterBox: FilterBox,
   },
   props: {
     postdata: {
+      type: Array,
+      required: true,
+    },
+    filtername: {
       type: Array,
       required: true,
     },
