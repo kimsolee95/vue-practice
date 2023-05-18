@@ -1,0 +1,26 @@
+<div>
+
+</div>
+<script>
+
+  //ex) 1
+  // var variable = '손흥민';
+  // var str = `안녕하세요 ${ variable } 입니다`;
+
+  // function machine(strs, variables) {
+  //   console.log(strs);
+  //   console.log(variables);
+  // }
+
+  // machine`안녕하세요 ${variable} 입니다`;
+
+  var pants = 20;
+  var socks = 100;
+
+  var str = `바지${pants} 양말${socks}`;
+  function machine(str, param1, param2) {
+    console.log(str[1] + param1 + str[0] + param2);
+  }
+  machine`바지${pants} 양말${socks}`;
+
+</script>
