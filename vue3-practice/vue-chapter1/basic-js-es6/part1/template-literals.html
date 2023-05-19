@@ -14,13 +14,28 @@
 
   // machine`안녕하세요 ${variable} 입니다`;
 
+  //ex) 2
+  // var pants = 20;
+  // var socks = 100;
+
+  // var str = `바지${pants} 양말${socks}`;
+  // function machine(str, param1, param2) {
+  //   console.log(str[1] + param1 + str[0] + param2);
+  // }
+  // machine`바지${pants} 양말${socks}`;
+
+  //ex) 3
   var pants = 20;
   var socks = 100;
+  `바지${pants} 양말${socks}`;
 
-  var str = `바지${pants} 양말${socks}`;
   function machine(str, param1, param2) {
-    console.log(str[1] + param1 + str[0] + param2);
+    if (param1 == 0) {
+      console.log(`바지 다 팔렸습니다. 양말` + param2);
+    }
   }
+
   machine`바지${pants} 양말${socks}`;
+  
 
 </script>
