@@ -1,0 +1,47 @@
+<div>
+
+  <img id="test" class="test" src="https://codingapple1.github.io/kona.jpg"> 
+
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
+<script>
+
+//1)
+  // var imgLoading = new Promise(function(resolve, reject) {
+
+  //   var img = document.querySelector('#test');
+  //   img.addEventListener('load', function() {
+  //     resolve();
+  //   });
+  //   img.addEventListener('error', function() {
+  //     reject();
+  //   });
+  // });
+
+  // imgLoading.then(function() {
+  //   console.log('이미지 로딩 성공');
+  // }).catch(function() {
+  //   console.log('이미지 로딩 실패');
+  // });
+
+//2)
+  let url = 'https://codingapple1.github.io/hello.txt';
+  let callAjax = new Promise((resolve, reject) => {
+    $.ajax({
+      type: 'GET',
+      url: url
+    }).done((res) => {
+      console.log(res);
+      resolve(res);
+    });
+  });
+
+  callAjax.then((res) => {
+    console.log('callAjax then==>', res);
+  }).then(this.stepTwo); 
+
+  const stepTwo = new Promise((resolve, reject) => {
+    console.log('step two ==>', resolve);
+  });
+
+</script>

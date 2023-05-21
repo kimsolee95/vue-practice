@@ -1,0 +1,33 @@
+<div></div>
+<script>
+
+  // var student1 = { name : 'kim', age: 15 };
+  // var student2 = { name : 'park', age: 15 };
+
+  //1)
+  // function machine() {
+  //   this.name = 'kim';
+  //   this.age = 15;
+  // }
+
+  // var student1 = new machine();
+  // var student2 = new machine();
+  // console.log(student1);
+  // console.log(student2);
+  
+  //2)
+  var product1 = { name : 'shirts', price : 50000 };
+  var product2 = { name : 'pants', price : 60000 };
+
+  function machine(prodcutName, price) {
+    this.name = prodcutName;
+    this.price = price;
+    this.per = function() {
+      console.log(this.price * 0.1);
+    }
+  }
+
+  var product = new machine('shirts', 2000);
+  console.log(product);
+
+</script>
