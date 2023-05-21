@@ -1,0 +1,56 @@
+<div>
+
+  <button id="promise-btn">promise 예제 버튼</button>
+
+</div>
+
+<script>
+
+//1)
+  // async function fnSum() {
+  //   return 1 + 1;
+  // }
+  // fnSum().then(function(result) {
+  //   console.log(result);
+  // });
+
+//2)
+  // async function fnSum() {
+  //   var messyCalculation = new Promise((resolve, reject) => {
+  //     var result = 1 + 1;
+  //     console.log(result);
+  //     resolve();
+  //   });
+  //   messyCalculation.then();
+  // }
+
+  // fnSum();
+
+//3)
+  // async function fnSum() {
+  //   var messyCalculation = new Promise((resolve, reject) => {
+  //     var result = 1 + 1;
+  //     resolve(result);
+  //   });
+  //   var result = await messyCalculation;
+  //   console.log(result);
+  // }
+  // fnSum();
+
+//4)
+  const btn = document.querySelector('#promise-btn');
+  
+  btn.addEventListener('click', (event) => {
+    fnBtnClickLog();
+  });
+
+  async function fnBtnClickLog() {
+    var log = new Promise((resolve, reject) => {
+      const log = '성공';
+      resolve(log);
+    });
+    const result = await log;
+    console.log(result);
+  }
+
+</script>
