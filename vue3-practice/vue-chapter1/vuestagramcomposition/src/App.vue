@@ -43,10 +43,16 @@ export default {
       step: 0,
       uploadImage: "",
       uploadText: "",
+      clickedFilter: ""
     }
   },
   components: {
     ContainerView: ContainerView
+  },
+  mounted() {
+    this.emitter.on('filterChoose', (e) => {
+      this.clickedFilter = e;
+    })
   },
   methods: {
     more() {
@@ -76,7 +82,7 @@ export default {
         date: "May 15",
         liked: false,
         content: this.uploadText,
-        filter: "perpetua"
+        filter: this.clickedFilter
       };
       postdata.unshift(publishedData);
       this.step = 0;

@@ -1,5 +1,9 @@
 <template>
-  <div class="filter-item" :class="`${filter}`" :style="{ backgroundImage: `url(${uploadImage})` }"></div> 
+  <div class="filter-item" 
+    :class="`${filter}`" 
+    :style="{ backgroundImage: `url(${uploadImage})` }"
+    @click="chooseFilter"
+  ></div> 
 </template>
 <script>
 export default {
@@ -12,6 +16,13 @@ export default {
     uploadImage: {
       type: String,
       required: true,
+    }
+  },
+
+  methods: {
+    chooseFilter() {
+      console.log('click===?', this.filter);
+      this.emitter.emit('filterChoose', this.filter);
     }
   }
 
