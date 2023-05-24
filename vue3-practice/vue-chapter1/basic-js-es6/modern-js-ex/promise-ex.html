@@ -1,0 +1,110 @@
+<div></div>
+
+<script>
+
+//1)
+  // var promise = new Promise(function(resolve, reject) {
+  //   setTimeout(function() {
+  //     console.log("A");
+  //     resolve();
+  //   }, 1000);
+  // });
+
+  // promise.then(function() {
+  //   console.log("B");
+  // });
+
+//2) reject를 catch에서 잡을 수 있다.
+  // var promise = new Promise(function(resolve, reject) {
+  //   setTimeout(function() {
+  //     var n = parseInt(prompt("10 미만 숫자를 입력하십시요"));
+  //     if (n <= 10) {
+  //       resolve(n);
+  //     } else {
+  //       reject(`에러: ${n} 은 10 이상입니다.`);
+  //     }
+  //   }, 1000);
+  // });
+
+  // promise
+  // .then(function(num) {
+  //   console.log(`2^${num} = ${Math.pow(2, num)}`);
+  // })
+  // .catch(function(error) {
+  //   console.log(error);
+  // });
+
+//3) then 두번째 인수 이용하기 (reject)
+  // var promise = new Promise(function(resolve, reject) {
+  //   setTimeout(function() {
+  //     var n = parseInt(prompt("10 미만 숫자를 입력하십시요"));
+  //     if (n <= 10) {
+  //       resolve(n);
+  //     } else {
+  //       reject(`오류: ${n}은 10 이상입니다.`);
+  //     }
+  //   }, 1000);
+  // });
+
+  // promise.then(
+  //   function(num) {
+  //     console.log(`2^${num} = ${Math.pow(2, num)}`);
+  //   },
+  //   function(error) {
+  //     console.log(error);
+  //   }
+  // );
+
+//4) 콜백 함수에 인수 주기
+  // function buyAsync(holdingMoney) {
+    
+  //   return new Promise(function(resolve, reject) {
+  //     setTimeout(function() {
+  //       var payment = parseInt(prompt("지불하고자 하는 금액 입력하세요"))
+  //       var balance = holdingMoney - payment;
+  //       if (balance > 0) {
+  //         console.log(`${payment} 원을 지불했습니다`);
+  //         resolve(balance);
+  //       } else {
+  //         reject(`잔액은 ${holdingMoney} 원입니다. 구매할 수 없습니다.`);
+  //       }
+  //     }, 1000);
+  //   });
+  // }
+
+  // buyAsync(500)
+  //   .then(function(balance) {
+  //     console.log(`잔액은 ${balance} 원입니다.`);
+  //   })
+  //   .catch(function(error) {
+  //     console.log(error);
+  //   });
+
+//5) promise 비동기 처리 연결
+  function buyAsync(money) {
+    return new Promise(function(resolve, reject) {
+      setTimeout(function() {
+        var payment = parseInt(prompt("지불하고자 하는 금액을 입력하십시요"));
+        var balance = money - payment;
+
+        if (balance > 0) {
+          console.log(`${payment}원을 지불했습니다.`);
+          resolve(balance);
+        } else {
+          reject(`잔액은 ${money}원입니다. 구매할 수 없습니다.`);
+        }
+      }, 1000);
+    });
+  }
+
+  buyAsync(500)
+    .then(function(balance) {
+      console.log(`잔액은 ${balance} 원입니다.`);
+      return buyAsync(balance);
+    })
+    .then(function(balance) {
+      console.log(`잔액은 ${balance}원입니다.`);
+      return buyAsync(balance);
+    })
+  
+</script>
