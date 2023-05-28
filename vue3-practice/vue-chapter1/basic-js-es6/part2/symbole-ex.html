@@ -1,0 +1,27 @@
+<div></div>
+<script>
+//1
+//symbol: Object 자료형의 비밀 key 값
+  // var weight = Symbol('secretWeight');
+  // var person = { name : 'kim', [height] : 200 };
+  // person[weight] = 80;
+
+//symbol key 는 반복문에서 출력이 되지 않는다. (enumerable이 아니기 때문임.)
+  // for (let key in person) {
+  //   console.log(person[key]);
+  // }
+
+//2
+  // var a = Symbol('설명1');
+  // var b = Symbol('설명1');
+  // console.log(a === b);
+
+//3 전역 symbol
+//a와 b의 symbol은 각각 다른 곳에서 만들었지만 전역 symbol의 경우,
+//새로운 symbol을 만들 때 설명이 같으면 그 설명을 가지고 있는
+//symbol을 그 자리에 집어넣는다.
+  // var a = Symbol.for('설명1');
+  // var b = Symbol.for('설명1');
+  // console.log(a === b);
+
+</script>
