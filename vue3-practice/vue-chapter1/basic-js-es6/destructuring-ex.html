@@ -1,0 +1,53 @@
+<div></div>
+<script>
+//변수 만들기
+//1)
+  // var arr = [2, 3, 4];
+  // var [a, b, c] = [2, 3, 4];
+
+//2)
+  // var obj = { name : 'kim', age : 30 };
+  // var name = obj.name;
+  // var age = obj.age;
+
+  //var { name, age } = { name : 'kim', age :  30 };
+  
+  //rename variable
+  //var { name : rename , age } = { name : 'kim', age :  30 };
+
+//변수들을 object에 넣기
+  // var name = 'kim';
+  // var age = 30;
+
+  // var obj = { name : name, age : age };
+  //es6 
+  // var obj = { name, age };
+
+//함수 파라미터에도 desctructuring 문법 적용해보기
+  // var obj = { name : 'kim', age : 30 };
+  // function fnEx( {name, age} ) {
+  //   console.log(name);
+  //   console.log(age);
+  // }
+
+  // fnEx({ name : 'kim', age : 30 });
+
+//object에서 데이터 뽑아서 변수 만들기 
+  let bodyProfile = {
+    body : {
+      height : 190,
+      weight : 70
+    },
+    size: ["상의 Large", "바지 30인치"],
+  };
+  
+  let {
+    body: {
+      height,
+      weight
+    },
+    size: [upperInfo, underInfo]
+  } = bodyProfile;
+  console.log(height);
+
+</script>
