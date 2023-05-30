@@ -1,0 +1,53 @@
+<div>
+</div>
+
+<script>
+
+//Javascript Object ===> JSON 문자열
+//JSON.stringify(value[, replacer[, space]])
+//첫 인수: JSON 변환할 Object
+//두 번째 인수: 함수 or 배열
+//세 번째 인수: 출력 문자열을 구분할 때 사용할 공백 문자
+  let ex1 = JSON.stringify({});
+  let ex2 = JSON.stringify([2, 4, null]);
+  console.log(ex1);
+  console.log(ex2);
+
+//두번째 인수 배열로 지정해보기
+  let ex3 = JSON.stringify({x:1, y:2, z:3}, ["x", "z"]);
+  console.log(ex3); 
+  //결과값{"x":1,"z":3} 
+  //배열을지정하게 되면 객체 내 프로퍼티 명을 필터링해서 있는 것만 문자열로 만들어서 반환한다.
+
+//세번째 인수 지정해보기
+  let ex4 = JSON.stringify({x:1, y:2}, null, '\t');
+  console.log(ex4);
+/*
+결과값
+{
+	"x": 1,
+	"y": 2
+}
+이렇게 출력 시, 문자열 구분에 사용할 공백 문자가 \t가 된다.
+*/
+
+
+//JSON 문자열 ===> Javascript Object
+//JSON.parse(text[, reviver])
+//첫 번째 인수: JSON 문자열
+//두 번째 인수: 프로퍼티의 key와 value를 인수로 받는 함수를 지정. 함수는 환원될 객체의 프로퍼티 값을 반환해야 한다.
+  let ex5 = (ex1);
+  console.log(ex5);
+
+//***** JSON을 활용한 객체의 deep copy
+  let objEx = [1, 2, 3, {x:1, y:2, arr:[7, 8, 9]}, 0];
+  let copyObjEx = JSON.parse(JSON.stringify(objEx));
+  copyObjEx.push(100);
+  console.log(copyObjEx);
+  console.log(objEx);
+  //... 전개연산자로는 중첩된 객체를 올바르게 복사할 수 없다 
+  //JSON 활용하여 중첩된 객체를 깊은 복사한 예이다. 
+  //맨 하위의 중첩된 객체 프로퍼티 값의 타입이 원시타입이어야 만 제대로 작동한다.
+  //참고할만한 블로그 링크: https://velog.io/@th0566/Javascript-%EC%96%95%EC%9D%80-%EB%B3%B5%EC%82%AC-%EA%B9%8A%EC%9D%80-%EB%B3%B5%EC%82%AC
+
+</script>
