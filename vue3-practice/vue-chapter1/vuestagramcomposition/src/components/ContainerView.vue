@@ -14,13 +14,9 @@
         <FilterBox v-for="item in filtername" 
         :key="item"
         :filter="item"
-        :uploadImage="uploadImage"
-        />
-        <!-- <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div> -->
+        :uploadImage="uploadImage">
+          <template v-slot:filterName>{{ item }}</template>
+        </FilterBox>
       </div>
     </div>
 

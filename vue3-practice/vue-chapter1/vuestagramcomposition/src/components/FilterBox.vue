@@ -1,9 +1,10 @@
 <template>
-  <div class="filter-item" 
-    :class="`${filter}`" 
-    :style="{ backgroundImage: `url(${uploadImage})` }"
-    @click="chooseFilter"
-  ></div> 
+  <div 
+  :class="`${filter} filter-item`" 
+  :style="{ backgroundImage: `url(${uploadImage})` }"
+  @click="chooseFilter">
+    <slot name="filterName"></slot>
+  </div> 
 </template>
 <script>
 export default {
