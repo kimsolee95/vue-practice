@@ -1,20 +1,22 @@
 <template>
   <div>
     <div v-if="step == 0">
-    <PostView v-for="item in postdata" 
-    :key="item" 
-    :post="item" />
+      <PostView v-for="item in postdata" 
+      :key="item" 
+      :post="item" />
     </div>
     <!-- 필터선택페이지 -->
     <div v-if="step == 1">
-      <div class="upload-image" 
-      :style="{ backgroundImage : `url(${uploadImage})` }">
+      <div 
+        :class="`upload-image ${this.filterItem}`" 
+        :style="{ backgroundImage : `url(${uploadImage})` }">
       </div>
       <div class="filters">
         <FilterBox v-for="item in filtername" 
-        :key="item"
-        :filter="item"
-        :uploadImage="uploadImage">
+          :key="item"
+          :filter="item"
+          :uploadImage="uploadImage"
+          @click="filterClick(item)">
           <template v-slot:filterName>{{ item }}</template>
         </FilterBox>
       </div>
@@ -58,9 +60,19 @@ export default {
       required: false,
     }
   },
+
+  data() {
+    return {
+      filterItem: '',
+    }
+  },
   methods: {
     writeSomething(e) {
       this.$emit('writeSomething', e);
+    },
+    filterClick(filterItem) {
+      console.log(`filter ${filterItem}`);
+      this.filterItem = filterItem;
     }
   }
 

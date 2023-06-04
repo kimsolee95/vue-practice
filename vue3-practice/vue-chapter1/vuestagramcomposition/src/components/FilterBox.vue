@@ -1,8 +1,8 @@
 <template>
   <div 
-  :class="`${filter} filter-item`" 
-  :style="{ backgroundImage: `url(${uploadImage})` }"
-  @click="chooseFilter">
+    :class="`${filter} filter-item`" 
+    :style="{ backgroundImage: `url(${uploadImage})` }"
+    @click="chooseFilter">
     <slot name="filterName"></slot>
   </div> 
 </template>
