@@ -10,6 +10,8 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
+  <h4>store test {{ $store.state.name }}</h4>
+
   <ContainerView 
   :postdata="postdata"
   :filtername="filtername"
