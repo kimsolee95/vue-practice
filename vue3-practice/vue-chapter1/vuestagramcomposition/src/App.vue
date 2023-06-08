@@ -11,7 +11,9 @@
   </div>
 
   <h4>store test {{ $store.state.name }}</h4>
-
+  <h4>age: {{ $store.state.age }}</h4>
+  <button @click="$store.commit('nameChange')">이름버튼</button>
+  <button @click="$store.commit('ageChange')">나이버튼</button>
   <ContainerView 
   :postdata="postdata"
   :filtername="filtername"
