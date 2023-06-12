@@ -1,0 +1,23 @@
+<div>
+</div>
+<script>
+
+  //optional chaining
+  //중첩 object에서 자료 뽑을 때 
+  //reference error 없이 안전하게 가져오고 싶을 때 사용한다.
+  var user = {
+    name : 'kim',
+    age: { value : 20 }
+  };
+  console.log(user.age.value);
+  console.log(user.age?.value);
+  //만약 age가 없다면 .value 대신 undefined를 내보낸다.
+
+  //data가 늦게 도착하는 시에는...
+  //undefined 혹은 null 이라면 오른쪽 값으로...
+  //(nullish coalescing 연산자)
+  console.log(user ?? 'data loading...');
+
+
+
+</script>
