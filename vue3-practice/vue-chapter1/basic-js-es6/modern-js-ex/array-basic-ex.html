@@ -1,0 +1,22 @@
+<div></div>
+<script>
+
+  var evens = [2, 4, 6, 8];
+  var a = [4, , 6, 8 ];
+
+  //배열은 객체이다.
+  //js의 배열은 Array객체임.
+  //가상으로 배열의 기능을 흉애 낸 것이어서
+  //배열의 인덱스를 문자열로 변환해서 그것을 프로퍼티로 이용함...
+  //배열의 요소 번호로 숫자 값 대신 문자열을 사용해도 콘솔에 문제없이 출력된다.
+  var a = ["A", "B", "C", "D"];
+  console.log(a["2"]);
+
+  //배열의 요소가 있는지 확인해보기
+  //자바스크립의 배열은 객체이기 때문에 객체 프로퍼티가 있는지 확인하는 거랑 똑같다.
+  for (var i in a) console.log(i);
+  console.log(a.hasOwnProperty("D"));
+  console.log(a.hasOwnProperty("Z"));
+
+
+</script>
