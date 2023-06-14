@@ -4,7 +4,8 @@ const store = createStore({
   state(){
     return {
       name: 'kim',
-      age: 20
+      age: 20,
+      likes: 30,
     }
   },
   mutations: {
@@ -13,6 +14,15 @@ const store = createStore({
     },
     ageChange(state) {
       state.age++;
+    },
+    likesChange(state, payload) {
+
+      if (payload) {
+        state.likes++;
+      } else {
+        state.likes--;
+      }
+
     }
   }
 

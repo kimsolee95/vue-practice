@@ -3,7 +3,8 @@
     <div v-if="step == 0">
       <PostView v-for="item in postdata" 
       :key="item" 
-      :post="item" />
+      :post="item"
+      @click="clickPost" />
     </div>
     <!-- 필터선택페이지 -->
     <div v-if="step == 1">
@@ -64,6 +65,7 @@ export default {
   data() {
     return {
       filterItem: '',
+      isLikesIncrease: true,
     }
   },
   methods: {
@@ -73,6 +75,11 @@ export default {
     filterClick(filterItem) {
       console.log(`filter ${filterItem}`);
       this.filterItem = filterItem;
+    },
+    clickPost() {
+      console.log('clickPost=====');
+      this.$store.commit('likesChange', this.isLikesIncrease);
+      this.isLikesIncrease = !this.isLikesIncrease;
     }
   }
 
