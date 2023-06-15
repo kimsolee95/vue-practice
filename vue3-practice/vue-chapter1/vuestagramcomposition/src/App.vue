@@ -14,6 +14,8 @@
   <h4>age: {{ $store.state.age }}</h4>
   <button @click="$store.commit('nameChange')">이름버튼</button>
   <button @click="$store.commit('ageChange')">나이버튼</button>
+  <button @click="$store.dispatch('getPostData')">더보기 버튼</button>
+
   <ContainerView 
   :postdata="postdata"
   :filtername="filtername"
