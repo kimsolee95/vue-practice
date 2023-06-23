@@ -38,16 +38,9 @@ onMounted(() => {
 })
 
 const fetchPosts = async () => {
-  // getPosts()
-  //   .then((response) => {
-  //     console.log('response-->', response)
-  //   })
-  //   .catch((error) => {
-  //     console.log(error)
-  //   })
-
-  const response = await getPosts()
-  console.dir(response)
+  const { data } = await getPosts()
+  posts.value = data
+  // ({ data: posts.value } = await getPosts());
 }
 
 const goPage = (postId) => {
