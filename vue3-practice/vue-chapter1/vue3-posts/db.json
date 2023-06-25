@@ -1,22 +1,17 @@
 {
   "posts": [
-    {
-      "id": 2,
-      "title": "제목2",
-      "content": "내용2",
-      "createdAt": "2020-02-01"
-    },
-    {
-      "id": 3,
-      "title": "제목3",
-      "content": "내용3",
-      "createdAt": "2020-03-01"
-    },
-    {
-      "id": 4,
-      "title": "제목4",
-      "content": "내용4",
-      "createdAt": "2020-04-01"
-    }
+    { "id": 2, "title": "제목2", "content": "내용2", "createdAt": "2020-02-01" },
+    { "id": 3, "title": "제목3", "content": "내용2", "createdAt": "2020-02-01" },
+    { "id": 4, "title": "제목4", "content": "내용2", "createdAt": "2020-02-01" },
+    { "id": 5, "title": "제목5", "content": "내용2", "createdAt": "2020-02-01" },
+    { "id": 6, "title": "제목6", "content": "내용2", "createdAt": "2020-02-01" },
+    { "id": 7, "title": "제목7", "content": "내용2", "createdAt": "2020-02-01" },
+    { "id": 8, "title": "제목8", "content": "내용2", "createdAt": "2020-02-01" },
+    { "id": 9, "title": "제목9", "content": "내용2", "createdAt": "2020-02-01" },
+    { "id": 10, "title": "제목10", "content": "내용2", "createdAt": "2020-02-01" },
+    { "id": 11, "title": "제목11", "content": "내용2", "createdAt": "2020-02-01" },
+    { "id": 12, "title": "제목12", "content": "내용2", "createdAt": "2020-02-01" },
+    { "id": 13, "title": "제목13", "content": "내용2", "createdAt": "2020-02-01" },
+    { "id": 14, "title": "제목14", "content": "내용2", "createdAt": "2020-02-01" },
   ]
 }
