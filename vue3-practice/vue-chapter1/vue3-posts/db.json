@@ -12,6 +12,6 @@
     { "id": 11, "title": "제목11", "content": "내용2", "createdAt": "2020-02-01" },
     { "id": 12, "title": "제목12", "content": "내용2", "createdAt": "2020-02-01" },
     { "id": 13, "title": "제목13", "content": "내용2", "createdAt": "2020-02-01" },
-    { "id": 14, "title": "제목14", "content": "내용2", "createdAt": "2020-02-01" },
+    { "id": 14, "title": "제목14", "content": "내용2", "createdAt": "2020-02-01" }
   ]
 }
