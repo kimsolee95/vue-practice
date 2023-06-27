@@ -32,8 +32,13 @@
     </div>
   </div>
 
+  <AppPagination
+    :current-page="params._page"
+    :page-count="pageCount"
+    @page="(page) => (params._page = page)"
+  />
   <!-- pagination -->
-  <nav class="mt-5" aria-label="Page navigation example">
+  <!-- <nav class="mt-5" aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
       <li :class="{ disabled: !(params._page > 1) }" class="page-item">
         <a @click.prevent="--params._page" class="page-link" href="#">Previous</a>
@@ -50,17 +55,18 @@
         <a @click.prevent="++params._page" class="page-link" href="#">Next</a>
       </li>
     </ul>
-  </nav>
+  </nav> -->
 
   <hr class="my-5" />
-  <AppCard>
+  <!-- <AppCard>
     <PostDetailView :id="1" />
-  </AppCard>
+  </AppCard> -->
 </template>
 <script setup>
 import PostItem from '@/components/posts/PostItem.vue'
 import PostDetailView from '@/views/posts/PostDetailView.vue'
 import AppCard from '@/components/AppCard.vue'
+import AppPagination from '@/components/AppPagination.vue'
 
 import { ref, computed, watch, onMounted } from 'vue'
 import { getPosts } from '@/api/posts'

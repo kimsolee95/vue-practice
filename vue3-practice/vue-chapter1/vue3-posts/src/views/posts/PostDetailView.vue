@@ -38,7 +38,7 @@ const post = ref({})
 //const postId = route.params.id
 
 const props = defineProps({
-  id: String
+  id: [String, Number]
 })
 
 onMounted(() => {

@@ -21,11 +21,9 @@
       ></textarea>
     </div>
 
-    <div class="pt-4">
-      <button type="button" @click="goDetailPage" class="btn btn-outline-danger me-2">취소</button>
-      <button class="btn btn-primary">수정</button>
+    <div class="d-flex gap-2 mt-4">
+      <slot name="actions"> </slot>
     </div>
-    <slot name="actions"> </slot>
   </form>
 </template>
 <script setup>

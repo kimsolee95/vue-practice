@@ -5,10 +5,8 @@
     <PostForm v-model:title="form.title" v-model:content="form.content" @submit.prevent="savePost">
       <!-- slot -->
       <template #actions>
-        <div class="pt-4">
-          <button type="button" @click="goListPage" class="btn btn-outline-dark me-2">목록</button>
-          <button class="btn btn-primary">저장</button>
-        </div>
+        <button type="button" @click="goListPage" class="btn btn-outline-dark">목록</button>
+        <button class="btn btn-primary">저장</button>
       </template>
     </PostForm>
   </div>
