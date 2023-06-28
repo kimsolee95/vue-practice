@@ -37,30 +37,13 @@
     :page-count="pageCount"
     @page="(page) => (params._page = page)"
   />
-  <!-- pagination -->
-  <!-- <nav class="mt-5" aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-      <li :class="{ disabled: !(params._page > 1) }" class="page-item">
-        <a @click.prevent="--params._page" class="page-link" href="#">Previous</a>
-      </li>
-      <li
-        v-for="page in pageCount"
-        :key="page"
-        :class="{ active: params._page === page }"
-        class="page-item"
-      >
-        <a class="page-link" href="#" @click.prevent="params._page = page">{{ page }}</a>
-      </li>
-      <li :class="{ disabled: !(params._page < pageCount) }" class="page-item">
-        <a @click.prevent="++params._page" class="page-link" href="#">Next</a>
-      </li>
-    </ul>
-  </nav> -->
 
-  <hr class="my-5" />
-  <!-- <AppCard>
-    <PostDetailView :id="1" />
-  </AppCard> -->
+  <template v-if="posts && posts.length > 0">
+    <hr class="my-5" />
+    <AppCard>
+      <PostDetailView :id="posts[0].id" />
+    </AppCard>
+  </template>
 </template>
 <script setup>
 import PostItem from '@/components/posts/PostItem.vue'
