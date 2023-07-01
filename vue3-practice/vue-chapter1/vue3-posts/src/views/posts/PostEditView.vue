@@ -12,10 +12,12 @@
         <button class="btn btn-primary">수정</button>
       </template>
     </PostForm>
+    <AppAlert v-show="showAlert" />
   </div>
 </template>
 <script setup>
 import PostForm from '@/components/posts/PostForm.vue'
+import AppAlert from '@/components/AppAlert.vue'
 
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -48,11 +50,21 @@ const editPost = async () => {
   try {
     await updatePost(postId, { ...form.value })
     router.push({ name: 'PostDetail' })
+    vAlert()
   } catch (error) {
     console.log(error)
   }
 }
 
 const goDetailPage = () => router.push({ name: 'PostDetail', params: { id: postId } })
+
+//alert
+const showAlert = ref(false)
+const vAlert = () => {
+  showAlert.value = true
+  setTimeout(() => {
+    showAlert.value = false
+  }, 2000)
+}
 </script>
 <style lang="scss"></style>
