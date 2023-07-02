@@ -12,7 +12,8 @@
         <button class="btn btn-primary">수정</button>
       </template>
     </PostForm>
-    <AppAlert v-show="showAlert" />
+    <!-- <AppAlert v-show="showAlert" :message="alertMessage" :type="alertType" /> -->
+    <AppAlert :items="alerts" />
   </div>
 </template>
 <script setup>
@@ -34,8 +35,13 @@ const form = ref({
 })
 
 const fetchPost = async () => {
-  const { data } = await getPostById(postId)
-  setForm(data)
+  try {
+    const { data } = await getPostById(postId)
+    setForm(data)
+  } catch (error) {
+    console.log(error)
+    vAlert(error.message)
+  }
 }
 
 const setForm = ({ title, content, createdAt }) => {
@@ -49,9 +55,10 @@ fetchPost()
 const editPost = async () => {
   try {
     await updatePost(postId, { ...form.value })
-    router.push({ name: 'PostDetail' })
-    vAlert()
+    //router.push({ name: 'PostDetail' })
+    vAlert('수정이 완료되었습니다', 'success')
   } catch (error) {
+    vAlert('수정이 실패하였습니다.')
     console.log(error)
   }
 }
@@ -59,11 +66,12 @@ const editPost = async () => {
 const goDetailPage = () => router.push({ name: 'PostDetail', params: { id: postId } })
 
 //alert
-const showAlert = ref(false)
-const vAlert = () => {
-  showAlert.value = true
+const alerts = ref([])
+
+const vAlert = (message, type = 'error') => {
+  alerts.value.push({ message, type })
   setTimeout(() => {
-    showAlert.value = false
+    alerts.value.shift()
   }, 2000)
 }
 </script>

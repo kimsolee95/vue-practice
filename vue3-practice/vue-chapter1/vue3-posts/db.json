@@ -2,19 +2,19 @@
   "posts": [
     {
       "id": 2,
-      "title": "제목2",
-      "content": "내용2",
+      "title": "modify",
+      "content": "rewrite",
       "createdAt": "2020-02-01"
     },
     {
-      "title": "제목3",
-      "content": "수정 modify test",
+      "title": "제목3testrewritemodify",
+      "content": "재수정테스트",
       "createdAt": "2020-02-01",
       "id": 3
     },
     {
       "id": 4,
-      "title": "제목4",
+      "title": "제목4수정수정",
       "content": "내용2",
       "createdAt": "2020-02-01"
     },
