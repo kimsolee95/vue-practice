@@ -13,16 +13,23 @@
           :content="item.content"
           :created-at="item.createdAt"
           @click="goPage(item.id)"
+          @modal="openModal(item)"
         />
       </template>
     </AppGrid>
   </div>
+
+  <AppModal :show="show" :title="게시글"></AppModal>
 
   <AppPagination
     :current-page="params._page"
     :page-count="pageCount"
     @page="(page) => (params._page = page)"
   />
+
+  <!-- modal -->
+
+  <!-- Modal -->
 
   <template v-if="posts && posts.length > 0">
     <hr class="my-5" />
@@ -35,6 +42,7 @@
 import PostItem from '@/components/posts/PostItem.vue'
 import PostDetailView from '@/views/posts/PostDetailView.vue'
 import PostFilter from '@/components/posts/PostFilter.vue'
+import AppModal from '@/components/AppModal.vue'
 
 import AppCard from '@/components/AppCard.vue'
 import AppPagination from '@/components/AppPagination.vue'
@@ -85,6 +93,11 @@ const goPage = (postId) => {
       id: postId
     }
   })
+}
+
+const show = ref(false)
+const openModal = () => {
+  show.value = true
 }
 </script>
 <style lang="scss"></style>
