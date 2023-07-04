@@ -19,7 +19,23 @@
     </AppGrid>
   </div>
 
-  <AppModal :show="show" :title="게시글"></AppModal>
+  <AppModal :show="show" :title="게시글" @click="closeModal">
+    <template #default>
+      <div class="row g-3">
+        <div class="col-3 text-muted">제목</div>
+        <div class="col-9">{{ modalTitle }}</div>
+        <div class="col-3 text-muted">내용</div>
+        <div class="col-9">{{ modalContent }}</div>
+        <div class="col-3 text-muted">등록일</div>
+        <div class="col-9">{{ modalCreatedAt }}</div>
+      </div>
+    </template>
+    <template #actions>
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="closeModal">
+        닫기
+      </button>
+    </template>
+  </AppModal>
 
   <AppPagination
     :current-page="params._page"
@@ -95,9 +111,20 @@ const goPage = (postId) => {
   })
 }
 
+//modal
 const show = ref(false)
-const openModal = () => {
+const modalTitle = ref('')
+const modalContent = ref('')
+const modalCreatedAt = ref('')
+
+const openModal = ({ title, content, createdAt }) => {
   show.value = true
+  modalTitle.value = title
+  modalContent.value = content
+  modalCreatedAt.value = createdAt
+}
+const closeModal = () => {
+  show.value = false
 }
 </script>
 <style lang="scss"></style>

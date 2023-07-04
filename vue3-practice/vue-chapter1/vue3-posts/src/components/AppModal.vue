@@ -60,6 +60,7 @@
                 class="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                @click="$emit('close')"
               ></button>
             </slot>
           </div>
@@ -67,10 +68,7 @@
             <slot> </slot>
           </div>
           <div class="modal-footer">
-            <slot name="actions">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Understood</button>
-            </slot>
+            <slot name="actions"> </slot>
           </div>
         </div>
       </div>
@@ -83,6 +81,7 @@ defineProps({
   show: Boolean,
   title: String
 })
+defineEmits(['close'])
 </script>
 
 <style lang="scss" scoped></style>
