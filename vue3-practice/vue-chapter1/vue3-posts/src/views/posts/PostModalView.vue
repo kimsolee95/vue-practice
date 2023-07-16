@@ -3,11 +3,11 @@
     <template #default>
       <div class="row g-3">
         <div class="col-3 text-muted">제목</div>
-        <div class="col-9">{{ modalTitle }}</div>
+        <div class="col-9">{{ title }}</div>
         <div class="col-3 text-muted">내용</div>
-        <div class="col-9">{{ modalContent }}</div>
+        <div class="col-9">{{ content }}</div>
         <div class="col-3 text-muted">등록일</div>
-        <div class="col-9">{{ modalCreatedAt }}</div>
+        <div class="col-9">{{ createdAt }}</div>
       </div>
     </template>
     <template #actions>
@@ -22,7 +22,10 @@
 import AppModal from '@/components/AppModal.vue'
 import { computed } from 'vue'
 const props = defineProps({
-  modelValue: Boolean
+  modelValue: Boolean,
+  title: String,
+  content: String,
+  createdAt: [String, Number]
 })
 const emit = defineEmits(['update:modelValue'])
 
@@ -40,4 +43,4 @@ const closeModal = () => {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>
