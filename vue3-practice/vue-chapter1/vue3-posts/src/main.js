@@ -3,7 +3,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from '@/router'
-//main test
+//main test 222
 createApp(App).use(router).mount('#app')
 import 'bootstrap/dist/js/bootstrap.js'
 
